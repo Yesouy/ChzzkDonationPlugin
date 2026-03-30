@@ -4,7 +4,7 @@ main: com.example.cheezedonation.cheeze_donation_plugin
 api-version: 1.19
 author: yesouy
 description: 실시간 후원 API 연동 플러그인 + 한글 닉네임 시스템
-website: https://github.com/Yesouy/CheezeDonationPlugin.git
+website: https://github.com/Yesouy/ChzzkDonationPlugin.git
 depend: []
 softdepend: []
 load: POSTWORLD
