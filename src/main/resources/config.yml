@@ -1,0 +1,170 @@
+# 치지직 연동 후원 플러그인 설정
+
+# 치지직 OAuth 설정
+chzzk:
+  client-id: ""
+  client-secret: ""
+
+  # 콜백 서버 설정
+  callback:
+    port: 8080
+    external-url: ""
+    auto-detect: false
+    use-ssl: false
+
+  # 공식 API 엔드포인트
+  auth-base-url: "https://openapi.chzzk.naver.com"
+  api-base-url: "https://openapi.chzzk.naver.com"
+
+  # Socket.IO 설정
+  socket-io:
+    enabled: true
+    reconnection: true
+    timeout: 5000
+    transports: ["websocket"]
+
+# 한글 닉네임 시스템 설정 (새로 추가)
+nickname:
+  enabled: true                      # 닉네임 시스템 활성화/비활성화
+  max-length: 16                     # 최대 닉네임 길이
+  min-length: 2                      # 최소 닉네임 길이
+  allow-color-codes: true            # 색상 코드 허용 여부 (&a, &b 등)
+  auto-apply-on-join: true           # 접속 시 자동 적용
+
+  # 닉네임 규칙
+  rules:
+    allow-korean: true               # 한글 허용
+    allow-english: true              # 영문 허용
+    allow-numbers: true              # 숫자 허용
+    allow-underscore: true           # 언더스코어(_) 허용
+    allow-hyphen: false              # 하이픈(-) 허용
+
+  # 금지된 단어 목록
+  banned-words:
+    - "admin"
+    - "관리자"
+    - "운영자"
+    - "op"
+    - "staff"
+    - "서버"
+    - "server"
+    - "moderator"
+    - "모더레이터"
+
+  # 표시 설정
+  display:
+    tab-list: true                   # 탭리스트에 닉네임 표시
+    name-tag: true                   # 캐릭터 위 닉네임 표시
+    chat: true                       # 채팅에 닉네임 표시
+    name-tag-visible: true           # 닉네임 태그 항상 표시
+
+# 특별 감옥 위치 설정
+custom-prison:
+  world: "world"
+  x: 1339
+  y: 64.56250
+  z: 306
+
+# 커맨드 블록 검색 설정 (30,000원 랜덤 텔레포트)
+command-block-search:
+  radius: 500              # 검색 반경 (월드 스폰 기준 ±블록)
+  min-y: -64               # 최소 Y 좌표
+  max-y: 320               # 최대 Y 좌표
+# 맵에 있는 커맨드 블록(체크포인트)을 자동으로 찾아서 텔레포트합니다!
+# 커맨드 블록 종류: COMMAND_BLOCK, CHAIN_COMMAND_BLOCK, REPEATING_COMMAND_BLOCK 모두 인식
+
+# 체크포인트 목록 (파쿠르 맵용 - 사용 안 함, 커맨드 블록 자동 검색 사용)
+# 형식: '월드이름,X좌표,Y좌표,Z좌표'
+# 예시:
+checkpoints:
+  - 'world,100.5,64.0,100.5'
+  - 'world,200.5,80.0,200.5'
+  - 'world,300.5,96.0,300.5'
+# 게임 내에서 '/치즈설정 체크포인트추가' 명령어로 현재 위치를 추가할 수 있습니다!
+# '/치즈설정 체크포인트목록' 으로 목록을 확인하세요.
+# '/치즈설정 체크포인트삭제 <번호>' 로 삭제할 수 있습니다.
+
+# 후원 이벤트 목록
+donation-events:
+  1000: # 1,000원
+    type: "cheese"
+    amount: 5
+    message: "치즈 5개 지급"
+
+  4000: # 4,000원
+    type: "love"
+    message: "사랑해 메시지 + 하트 파티클"
+
+  5000: # 5,000원
+    type: "mob_spawn"
+    message: "랜덤 몹 소환"
+
+  7000: # 7,000원
+    type: "jackpot"
+    chance: 10
+    duration: 300
+    message: "777 잭팟 (인벤세이브 뽑기)"
+
+  9000: # 9,000원
+    type: "random_effect"
+    duration: 600
+    message: "랜덤 버프 또는 디버프"
+
+  10000: # 10,000원
+    type: "tour_performance"
+    duration: 5
+    message: "순회공연 (모든 플레이어에게 5초씩 방문)"
+
+  30000: # 30,000원
+    type: "teleport"
+    message: "다른 플레이어에게 텔레포트"
+
+  100000: # 100,000원
+    type: "prison"
+    duration: 300
+    message: "지정 위치 5분 감옥"
+
+  500000: # 500,000원
+    type: "instant_death"
+    message: "즉사"
+
+# === 사용 방법 ===
+
+# 치지직 OAuth 연동:
+# 1. /치즈설정 연결 - 채널 연결
+# 2. /치즈설정 해제 - 채널 해제
+# 3. /치즈설정 상태 - 상태 확인
+# 4. /치즈설정 테스트 <플레이어> <금액> - 테스트
+
+# 한글 닉네임 시스템:
+# 1. /치즈설정 닉네임변경 <닉네임> - 닉네임 설정
+# 2. /치즈설정 닉네임제거 - 닉네임 제거
+# 3. /치즈설정 닉네임조회 [플레이어] - 닉네임 정보 조회
+
+# 체크포인트 관리 (관리자 전용):
+# 1. /치즈설정 체크포인트추가 - 현재 위치를 체크포인트로 추가
+# 2. /치즈설정 체크포인트목록 - 체크포인트 목록 보기
+# 3. /치즈설정 체크포인트삭제 <번호> - 체크포인트 제거
+# 4. /치즈설정 체크포인트새로고침 - config.yml에서 체크포인트 다시 로드
+
+# 후원 이벤트:
+# 1,000원: 치즈 5개 지급
+# 4,000원: 사랑해 메시지 + 하트 폭죽
+# 5,000원: 랜덤 몹 소환
+# 7,000원: 777 잭팟 슬롯머신 (인벤세이브권)
+# 9,000원: 랜덤 버프/디버프
+# 10,000원: 순회공연
+# 30,000원: 랜덤 텔레포트
+# 100,000원: 5분 감옥
+# 500,000원: 즉사
+
+# 닉네임 규칙:
+# - 길이: 2-16자
+# - 허용 문자: 한글, 영문, 숫자, 언더스코어
+# - 금지: 관리자 관련 단어, 특수문자
+# - 색상 코드: &a, &b 등 사용 가능 (설정에 따라)
+
+# 파일 저장 위치:
+# - 후원 토큰: plugins/StaveDonationLinkPlugin/user_tokens.json
+# - 닉네임 데이터: plugins/StaveDonationLinkPlugin/nicknames.json
+# - 다이아 추적: 메모리에만 저장됨 (서버 재시작 시 초기화)

@@ -1,0 +1,50 @@
+name: ChzzkDonationLinkPlugin
+version: 1.21.10
+main: com.example.cheezedonation.cheeze_donation_plugin
+api-version: 1.19
+author: yesouy
+description: 실시간 후원 API 연동 플러그인 + 한글 닉네임 시스템
+website: https://github.com/Yesouy/CheezeDonationPlugin.git
+depend: []
+softdepend: []
+load: POSTWORLD
+prefix: cheezeDonation
+
+commands:
+  치즈설정:
+    description: 치지직 후원 플러그인 설정 및 관리 + 한글 닉네임 관리
+    usage: /치즈설정 [명령어]
+    permission: cheeze.donation.admin
+    permission-message: 이 명령어를 사용할 권한이 없습니다.
+  scoreboard:
+    description: 다이아 미션 스코어보드 ON/OFF 토글
+    usage: /scoreboard
+    aliases: [스코어보드, sb]
+    permission: cheeze.donation.scoreboard
+    permission-message: 이 명령어를 사용할 권한이 없습니다.
+
+permissions:
+  cheeze.donation.admin:
+    description: 치지직 후원 플러그인 관리 권한
+    default: op
+  cheeze.donation.nickname:
+    description: 자신의 한글 닉네임 설정 권한
+    default: true
+  cheeze.donation.nickname.others:
+    description: 다른 플레이어의 닉네임 관리 권한 (관리자 전용)
+    default: op
+  cheeze.donation.nickname.list:
+    description: 닉네임 목록 조회 권한 (관리자 전용)
+    default: op
+  cheeze.donation.scoreboard:
+    description: 스코어보드 조회 권한
+    default: true
+  cheeze.donation.*:
+    description: 모든 치지직 후원 권한
+    default: op
+    children:
+      cheeze.donation.admin: true
+      cheeze.donation.nickname: true
+      cheeze.donation.nickname.others: true
+      cheeze.donation.nickname.list: true
+      cheeze.donation.scoreboard: true
